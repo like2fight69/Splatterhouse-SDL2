@@ -1,0 +1,12 @@
+Ver.1.4-4
+check collisionmanager.cpp
+snail is deactivated with m_bDead = True
+change sprite
+responds to enemy->Death but quits program
+grep -nr 'draw()' .
+im getting a response from collisionmanager with "Weapon"
+might have to edit map1.tmx for weapon animation and movement like snail 
+edit weapon png size in map1.tmx
+flip weapon when facing left and right:Done
+align weapon with player sprite and adjust the size of weapon
+make weapon come back to position after pressing f
