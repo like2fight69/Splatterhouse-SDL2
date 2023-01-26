@@ -13,6 +13,7 @@
 #include <vector>
 
 class Player;
+class LifeBar;
 class Weapon;
 class GameObject;
 

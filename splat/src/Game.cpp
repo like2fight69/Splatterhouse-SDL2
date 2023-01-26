@@ -18,6 +18,7 @@
 #include "Sword.h"
 #include <iostream>
 #include "Weapon.h"
+#include "LifeBar.h"
 //#include "Turret.h"
 
 using namespace std;
@@ -114,6 +115,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
     TheGameObjectFactory::Instance()->registerType("ScrollingBackground", new ScrollingBackgroundCreator());
     TheGameObjectFactory::Instance()->registerType("Snail", new SnailCreator());
     TheGameObjectFactory::Instance()->registerType("Weapon", new WeaponCreator());
+    TheGameObjectFactory::Instance()->registerType("LifeBar", new LifeBarCreator());
   //  TheGameObjectFactory::Instance()->registerType("Turret", new TurretCreator());
 //    TheGameObjectFactory::Instance()->registerType("Sword", new SwordCreator());
 //add sword object    

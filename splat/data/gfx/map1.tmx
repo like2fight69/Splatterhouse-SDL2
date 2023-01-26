@@ -5,6 +5,7 @@
   <property name="player" value="player.png"/>
   <property name="snail" value="snail.png"/>
   <property name="weapon" value="weapon.png"/>
+  <property name="lifebar" value="lifebar.png"/>
  </properties>
  <tileset firstgid="1" name="blocks1" tilewidth="32" tileheight="32" spacing="2" margin="2" tilecount="198">
   <image source="blocks1.png" width="614" height="376"/>
@@ -101,6 +102,16 @@
     <property name="textureWidth" value="42"/>
    </properties>
   </object>
+  <object id="10" name="LifeBar" type="LifeBar" x="495" y="199" width="150" height="44">
+   <properties>
+    <property name="numFrames" value="4"/>
+    <property name="textureHeight" value="27"/>
+    <property name="textureID" value="lifebar"/>
+    <property name="textureWidth" value="42"/>
+   </properties>
+  </object>
+  
+  
   
   
  </objectgroup>

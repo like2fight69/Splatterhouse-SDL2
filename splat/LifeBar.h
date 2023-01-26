@@ -1,13 +1,6 @@
-//
-//  Player.h
-//  SDL Game Programming Book
-//
-//  Created by shaun mitchell on 12/01/2013.
-//  Copyright (c) 2013 shaun mitchell. All rights reserved.
-//
 
-#ifndef __SDL_Game_Programming_Book__Weapon__
-#define __SDL_Game_Programming_Book__Weapon__
+#ifndef SDLPlatformer_LifeBar_h
+#define SDLPlatformer_LifeBar_h
 
 #include <iostream>
 #include <vector>
@@ -17,39 +10,45 @@
 #include "Camera.h"
 #include "Game.h"
 
-class Weapon : public PlatformerObject
+
+class LifeBar : public PlatformerObject
 {
 public:
     
-    //Weapon();
-  //SDL_Rect heroRect;
-  virtual void draw();//virtual void draw(int x, int y);
-  //void handleInput();
-  
-   Weapon();
-    virtual ~Weapon() {}
+   
+   //LifeBar();
+   // virtual ~LifeBar() {}
+     LifeBar::LifeBar() : PlatformerObject()
+    {
+   moveLeft = true;
+    }
+    
+    
+    void fillRect(SDL_Rect* rc, int r, int g, int b ) {
+    SDL_SetRenderDrawColor(TheGame::Instance()->getRenderer(), r, g, b, SDL_ALPHA_OPAQUE);
+    SDL_RenderFillRect(TheGame::Instance()->getRenderer(), rc);
+}
+
+    
      //test
      virtual void load(std::unique_ptr<LoaderParams> const &pParams)
     {
         PlatformerObject::load(std::move(pParams));
        
     }
-     //virtual std::string type() { return "Weapon"; }
-    
-    //virtual void load(std::unique_ptr<LoaderParams> const &pParams);
-    
+     
     virtual void update();
-    virtual std::string type() { return "Weapon"; }
+    virtual std::string type() { return "LifeBar"; }
     
 private:
     
-    void attack();
+    
 
     // bring the player back if there are lives left
     void ressurect();
-    
+    void fillRect(SDL_Rect* rc, int r, int g, int b )
     // handle any input from the keyboard, mouse, or joystick
-    void handleInput();
+    
     
     // handle any animation for the player
     void handleAnimation();
@@ -73,14 +72,6 @@ private:
 };
 
 // for the factory
-class WeaponCreator : public BaseCreator
-{
-    GameObject* createGameObject() const
-    {
-        
-       return new Weapon();
-    }
-};
 
 
 #endif /* defined(__SDL_Game_Programming_Book__Player__) */

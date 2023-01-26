@@ -14,6 +14,7 @@
 #include "PlatformerObject.h"
 #include "GameObjectFactory.h"
 #include "Weapon.h"
+#include "LifeBar.h"
 
 class Player : public PlatformerObject
 {
@@ -21,7 +22,8 @@ public:
     
     Player();
     virtual ~Player() {}
-    
+    //LifeBar pBar;
+    SDL_Rect lifeRect;
     virtual void load(std::unique_ptr<LoaderParams> const &pParams);
     
     virtual void draw();
@@ -30,7 +32,9 @@ public:
     virtual void clean();
     
     virtual void collision();
-    
+    void ressurect();
+    int width = 152;
+int height = 45;
     virtual std::string type() { return "Player"; }
     
 private:
@@ -38,7 +42,7 @@ private:
     void attack();
 
     // bring the player back if there are lives left
-    void ressurect();
+    //void ressurect();
     
     // handle any input from the keyboard, mouse, or joystick
     void handleInput();

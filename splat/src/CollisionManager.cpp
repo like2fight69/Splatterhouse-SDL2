@@ -15,7 +15,9 @@
 #include "Weapon.h"
 #include "InputHandler.h"
 #include "SoundManager.h"
-//#include "TextureManager.h"
+#include "LifeBar.h"
+
+//LifeBar pBar;
 
 void CollisionManager::checkPlayerEnemyCollision(Player* pPlayer, const std::vector<GameObject*> &objects)
 {
@@ -36,12 +38,12 @@ void CollisionManager::checkPlayerEnemyCollision(Player* pPlayer, const std::vec
             continue;
         }
         //test
-        Weapon *pWeapon;
+        LifeBar *pLifeBar;
         SDL_Rect* pRect3 = new SDL_Rect();
-    pRect3->x = pWeapon->getPosition().getX();
-    pRect3->y = pWeapon->getPosition().getY();
-    pRect3->w = pWeapon->getWidth();
-    pRect3->h = pWeapon->getHeight();
+    pRect3->x = pLifeBar->getPosition().getX();
+    pRect3->y = pLifeBar->getPosition().getY();
+    pRect3->w = pLifeBar->getWidth();
+    pRect3->h = pLifeBar->getHeight();
         
         
 
@@ -60,7 +62,16 @@ void CollisionManager::checkPlayerEnemyCollision(Player* pPlayer, const std::vec
         
         if(objects[i]->type() == std::string("Enemy"))//std::string("Enemy")
         {
-//             pPlayer->collision();
+             //pPlayer->ressurect();
+             //pLifeBar->playerHurt();
+             //pBar.draw(152,45);
+             //test
+             if(pPlayer->width <= 10 ){//110 20
+             pPlayer->ressurect();
+             }else{
+             pPlayer->width--;
+            //pPlayer->height--;
+             }
             //objects[i]->m_bDead = true;
          // PlatformerObject::doDyingAnimation();
        //   enemy->Death();
@@ -70,7 +81,7 @@ void CollisionManager::checkPlayerEnemyCollision(Player* pPlayer, const std::vec
         }
 
 
-
+ 
         //test
             if(!objects[i]->dead() && !objects[i]->dying())
             {

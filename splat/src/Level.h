@@ -15,6 +15,7 @@
 #include "LevelParser.h"
 #include "Player.h"
 #include "Weapon.h"
+#include "LifeBar.h"
 #include "CollisionManager.h"
 
 class TileLayer;
@@ -49,6 +50,10 @@ public:
     
     Player* getPlayer() { return m_pPlayer; }
     void setPlayer(Player* pPlayer) { m_pPlayer = pPlayer; }
+    
+    LifeBar* getLifeBar() { return m_pLifeBar; }
+    void setPlayer(LifeBar* pLifeBar) { m_pLifeBar = pLifeBar; }
+    
     //test
     Weapon* getWeapon() { return m_pWeapon; }
     void setWeapon(Weapon* pWeapon) { m_pWeapon = pWeapon; }
@@ -62,6 +67,7 @@ private:
     Level();
     
     Player* m_pPlayer;
+    LifeBar* m_pLifeBar;
     Weapon* m_pWeapon;
     
     std::vector<Layer*> m_layers;

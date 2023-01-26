@@ -5,7 +5,7 @@
 //  Created by shaun mitchell on 12/01/2013.
 //  Copyright (c) 2013 shaun mitchell. All rights reserved.
 //
-
+//#include "LifeBar.h"
 #include "Player.h"
 #include "Game.h"
 #include "InputHandler.h"
@@ -14,8 +14,8 @@
 #include "Camera.h"
 #include "TextureManager.h"
 #include "CollisionManager.h"
+//#include "LifeBar.h"
 #include "Weapon.h"
-//#include "Snail.h"
 #include "Collision.h"
 
 using namespace std;
@@ -27,8 +27,10 @@ collide with snail:DONE
 draw enemy
 player life bar:
 */
+LifeBar pBar;
 SDL_Rect heroRect;
 SDL_Rect enemyRect;
+
 //SDL_Rect* heroRect = new SDL_Rect();
 //SDL_Rect* enemyRect = new SDL_Rect();
 
@@ -42,8 +44,9 @@ m_bPressedJump(false)
     m_jumpHeight = 80;
     mCollider.w = m_width;
     mCollider.h = m_height;
-    heroRect.x = (Uint32)m_position.getX() -  TheCamera::Instance()->getPosition().m_x;//
-    heroRect.y = (Uint32)m_position.getY() -  TheCamera::Instance()->getPosition().m_y;
+    //LifeBar pBar;
+    //heroRect.x = (Uint32)m_position.getX() -  TheCamera::Instance()->getPosition().m_x;//
+    //heroRect.y = (Uint32)m_position.getY() -  TheCamera::Instance()->getPosition().m_y;
         //enemyRect.x = (Uint32)m_position.getX() -  TheCamera::Instance()->getPosition().m_x;//
     //enemyRect.y = (Uint32)m_position.getY() -  TheCamera::Instance()->getPosition().m_y;
     
@@ -66,7 +69,7 @@ void Player::collision()
       //  m_numFrames = 9;
        // m_width = 50;
        // m_bDying = true;
-        
+        //ressurect();
 //test        
 //       TheSoundManager::Instance()->load("Hurt.wav","Hurt",SOUND_SFX);
   //      TheSoundManager::Instance()->playSound("Hurt", 0);
@@ -98,12 +101,19 @@ void Player::load(std::unique_ptr<LoaderParams> const &pParams)
 }
 Weapon wp;
 //Snail snail;
-
+//int width = 152;
+//int height = 45;
 void Player::draw()
 {
    //test
    //SDL_Rect heroRect;
-    
+   lifeRect.x = (Uint32)m_position.getX() -  TheCamera::Instance()->getPosition().m_x;//
+    lifeRect.y = (Uint32)m_position.getY() -  TheCamera::Instance()->getPosition().m_y;
+    lifeRect.w = 20 ; 
+    lifeRect.h = 20 ;
+   //fillRect(lifeRect,255,255,255);
+   
+    //pBar.playerHurt();
   
     // Render hero
     //heroRect.x = (Uint32)m_position.getX() -  TheCamera::Instance()->getPosition().m_x;//
@@ -115,7 +125,7 @@ void Player::draw()
     
    //SDL_RenderCopy(TheGame::Instance()->getRenderer(), bmpTex, NULL, &heroRect);
     //fillRect(&heroRect, 255, 0, 0 );
-    
+    pBar.draw(width,height);//152,45
     
     //wp.draw(heroRect.x ,heroRect.y );
     //snail.draw(enemyRect.x, enemyRect.y);
@@ -124,7 +134,7 @@ void Player::draw()
     if(m_bFlipped)
     {
         TheTextureManager::Instance()->drawFrame(m_textureID, (Uint32)m_position.getX() -  TheCamera::Instance()->getPosition().m_x, (Uint32)m_position.getY() -  TheCamera::Instance()->getPosition().m_y,m_width, m_height, m_currentRow, m_currentFrame, TheGame::Instance()->getRenderer(), m_angle, m_alpha, SDL_FLIP_HORIZONTAL);
-        
+       
     }
     else
     {
@@ -250,8 +260,17 @@ void Player::update()
     //heroRect.y = (Uint32)m_position.getY() -  TheCamera::Instance()->getPosition().m_y;
     //heroRect.w = 20 ;
     //heroRect.h = 20 ;
-    
-    
+   // pBar.draw(152,45);
+     if(m_position.m_y + m_height <= 570)//470
+        {
+            //snail collision
+            //ressurect();
+           // collision();
+            //width = 49;
+           // height = 45;
+          // pBar.draw(49,45);
+
+        }
     
     
 
@@ -268,19 +287,19 @@ void Player::update()
         if(m_position.m_y + m_height >= 470)//470
         {
             //snail collision
-            collision();
-//        Snail snail;
-//          snail::Death();
-     
-
-
+            //ressurect();
+           // collision();
+            width = 49;
+            height = 45;
+          // pBar.draw(49,45);
 
         }
         
         handleInput();
         
         if(m_bMoveLeft)
-        {
+        { //width = 49;
+            //height = 45;
             if(m_bRunning)
             {
                 m_velocity.m_x = -5;
