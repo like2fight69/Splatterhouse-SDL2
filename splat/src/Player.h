@@ -61,6 +61,8 @@ private:
     
     bool m_bPressedJump;
     bool m_bAttack;
+    bool m_bAttacking;
+    bool m_bPressedAttack;
 };
 
 // for the factory

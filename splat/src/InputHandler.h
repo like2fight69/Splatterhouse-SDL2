@@ -48,7 +48,7 @@ public:
     
     // keyboard events
     bool isKeyDown(SDL_Scancode key) const;
-    
+    bool isKeyUp(SDL_Scancode key) const;
     // joystick events
     int getAxisX(int joy, int stick) const;
     int getAxisY(int joy, int stick) const;

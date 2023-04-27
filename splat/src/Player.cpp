@@ -25,7 +25,8 @@ draw shuriken onto herorect:DONE
 weapon follow player:DONE
 collide with snail:DONE
 draw enemy
-player life bar:
+player life bar:DONE
+attack shouldn't be done repeatedly
 */
 LifeBar pBar;
 SDL_Rect heroRect;
@@ -213,9 +214,9 @@ void Player::handleAnimation()
             }
         }
       //test
-     unsigned int lastTime = 0, currentTime;
+     unsigned int lastTime = 0, currentTime;//0
       currentTime = SDL_GetTicks();
-
+     
       if(m_bAttack == true)
       {
 //       m_bDead = true;
@@ -224,11 +225,13 @@ void Player::handleAnimation()
             m_currentRow = 0;
             m_numFrames = 2;
            currentTime = SDL_GetTicks();
-  if (currentTime > lastTime + 1000) {
+
+  if (currentTime > lastTime + 10000) {//+ 1000
    // printf("Report: %d\n", variable);
     lastTime = currentTime;
-    m_bAttack = false;
+   // m_bAttack = false;
   }
+
 
 
       }/* else{
@@ -471,18 +474,30 @@ void Player::handleInput()
         m_bMoveLeft = false;
     }
    //test 
-       if(TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_F))
+       if(TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_F) && !m_bPressedAttack )//isKeyDown
     {
+       if(!m_bPressedAttack)
+       {
        m_bAttack = true;
+
+       m_bPressedAttack = true;
 //       Snail::m_bDead = true;
-//       TheSndManager::Instance()->load("hit.wav","hit",SOUND_SFX);
+       TheSoundManager::Instance()->load("hit.wav","hit",SOUND_SFX);
        //draw shuriken
        //heroRect.x += 250;
        //wp.attack(heroRect.x,heroRect.y);
        //TextureManager::Instance()->draw("weapon", heroRect.x,heroRect.y, 30, 25,TheGame::Instance()->getRenderer());
-        //TheSoundManager::Instance()->playSound("hit", 0);
+        TheSoundManager::Instance()->playSound("hit", 0);
+       }
+    }
+    if(!TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_F))
+    {
+      m_bAttack = false;
+      m_bPressedAttack = false;
 
     }
+
+
 
 
 //load(std::string fileName, std::string id, sound_type type)

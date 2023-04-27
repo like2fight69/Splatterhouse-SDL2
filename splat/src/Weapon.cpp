@@ -17,7 +17,7 @@ m_invulnerableCounter(0),
 m_bPressedJump(false)
 {
     m_jumpHeight = 80;
-    mCollider.w = m_width;
+    mCollider.w = 15;m_width;
     mCollider.h = m_height;
     weaRect.x = (Uint32)m_position.getX() -  TheCamera::Instance()->getPosition().m_x;
     weaRect.y = (Uint32)m_position.getY() -  TheCamera::Instance()->getPosition().m_y;
@@ -120,8 +120,8 @@ m_bPressedJump(false)
    //SDL_RenderCopy(TheGame::Instance()->getRenderer(), bmpTex, NULL, &heroRect);
     //TextureManager::Instance()->load("weapon.png",m_textureID,TheGame::Instance()->getRenderer());
     //TextureManager::Instance()->draw(m_textureID, x,y, 30, 25,TheGame::Instance()->getRenderer());
-    //TextureManager::Instance()->drawFrame(m_textureID, (Uint32)m_position.getX() -  TheCamera::Instance()->getPosition().m_x, (Uint32)m_position.getY() -  TheCamera::Instance()->getPosition().m_y,m_width, m_height, m_currentRow, m_currentFrame, TheGame::Instance()->getRenderer(), m_angle, m_alpha, SDL_FLIP_HORIZONTAL);
-    //SDL_Event event;
+    //TextureManager::Instance()->drawFrame(m_textureID, (Uint32)m_position.getX() -  TheCamera::Instance()->getPosition().m_x, (Uint32)m_position.getY() -  TheCamera::Instance()->getPosition().m_y,20, m_height, m_currentRow, m_currentFrame, TheGame::Instance()->getRenderer(), m_angle, m_alpha, SDL_FLIP_HORIZONTAL);
+    //SDL_Event event; m_height;
       
      
      /*if(TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_F))//isKeyDown

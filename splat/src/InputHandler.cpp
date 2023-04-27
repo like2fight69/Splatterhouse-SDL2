@@ -126,7 +126,28 @@ bool InputHandler::isKeyDown(SDL_Scancode key) const
     
     return false;
 }
+//test
+bool InputHandler::isKeyUp(SDL_Scancode key) const
+{
+    if(m_keystates != 0)
+    {
+        if(m_keystates[key] == 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    return false;
+}
 
+
+
+
+//test
 int InputHandler::getAxisX(int joy, int stick) const
 {
     if(m_joystickValues.size() > 0)
